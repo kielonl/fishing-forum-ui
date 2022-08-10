@@ -1,21 +1,19 @@
-.imageBanner-container img{
-    width:100vw;
-    height:50vh;
-
+.imageBanner-container img {
+    width: 100vw;
+    height: 50vh;
 }
 
-.imageBanner-text-banner{
-    position:absolute;
-    background-color:black;
-    color:white;
-    opacity:.7;
-    width:100vw;
-    height:2.5em;
-    
+.imageBanner-text-banner {
+    position: absolute;
+    background-color: black;
+    color: white;
+    opacity: .7;
+    width: 100vw;
+    height: 2.5em;
 }
 
-.imageBanner-text-banner{
-    display:flex;
+.imageBanner-text-banner {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
