@@ -5,13 +5,37 @@
         height: 4em;
     }
 
-    .navbar-item {
-        margin: 1em
-    }
+    /* .navbar-item {} */
 
     .navbar-mobile-toggle-container {
         display: none
     }
+}
+
+.navbar-categories {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item {
+    padding: 1rem;
+}
+
+.navbar-item div {
+    color: white;
+    background-color: #0369a1;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 1.1rem;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.not-bold {
+    font-weight: lighter
 }
 
 .navbar-main {
@@ -25,6 +49,7 @@
 }
 
 .navbar-login-button {
+    margin: 1rem;
     color: white;
     background-color: #0284c7;
     border: none;

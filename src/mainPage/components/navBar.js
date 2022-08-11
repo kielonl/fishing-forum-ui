@@ -1,14 +1,24 @@
 import React from "react";
-import "../styles/NavBar.css";
+import "../styles/navBar.css";
 
 const NavBar = () => {
   return (
     <ul className="navbar-main">
-      <li className="navbar-item">wedkarstwo</li>
-      <li className="navbar-item">rybactwo</li>
-      <li className="navbar-item">myslictwo</li>
-      <li className="navbar-item">kulinarne</li>
-      <li className="navbar-item navbar-login">
+      <div className="navbar-categories">
+        <li className="navbar-item bold">
+          <div>wedkarstwo</div>
+        </li>
+        <li className="navbar-item not-bold">
+          <div>rybactwo</div>
+        </li>
+        <li className="navbar-item not-bold">
+          <div>myslictwo</div>
+        </li>
+        <li className="navbar-item not-bold">
+          <div>kulinarne</div>
+        </li>
+      </div>
+      <li className="navbar-login not-bold">
         <button className="navbar-login-button">Log in</button>
       </li>
     </ul>
