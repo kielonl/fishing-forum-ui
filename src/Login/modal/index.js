@@ -29,7 +29,20 @@ const Modal = ({ handleClose, text }) => {
         variants={dropIn}
         initial="hidden"
         animate="visible"
-      ></motion.div>
+      >
+        <div className="login-form">
+          <h1>Log in</h1>
+          <input type="text" className="login-input" />
+          <input type="text" className="login-input" />
+          <motion.button
+            className="login-button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Log in
+          </motion.button>
+        </div>
+      </motion.div>
     </Backdrop>
   );
 };

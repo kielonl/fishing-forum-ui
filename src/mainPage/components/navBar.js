@@ -26,7 +26,6 @@ const NavBar = () => {
         </button>
 
         <AnimatePresence
-          drag
           initial={false}
           exitBeforeEnter={true}
           onExitComplete={() => null}
