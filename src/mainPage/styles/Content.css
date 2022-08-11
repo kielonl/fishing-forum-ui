@@ -1,0 +1,27 @@
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-main-block {
+    border: 2px solid gray;
+    width: 65vw;
+    height: max-content;
+    margin: 2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.content-post {
+    border: 1px solid gray;
+    width: 45vw;
+    margin: 1em
+}
+
+.content-post-title {
+    margin: .2em;
+}
+
+.content-post-description {
+    margin: .5em
+}
