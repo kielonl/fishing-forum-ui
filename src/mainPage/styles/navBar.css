@@ -61,3 +61,11 @@
 .navbar-login-button:hover {
     background-color: #0e5274;
 }
+
+.navbar-logo {
+    height: 4rem;
+    width: 4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
