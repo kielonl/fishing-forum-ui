@@ -1,9 +1,9 @@
 import React from "react";
-import framer, { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
-import "../styles/Login.css";
+import "../styles/Modal.css";
 
-const Login = ({ children, onClick }) => {
+const Backdrop = ({ children, onClick }) => {
   return (
     <motion.div
       className="backdrop"
@@ -16,4 +16,4 @@ const Login = ({ children, onClick }) => {
     </motion.div>
   );
 };
-export default Login;
+export default Backdrop;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { AnimatePresence } from "framer-motion";
 import Modal from "../../Login/modal/index";
 import "../styles/NavBar.css";
 
@@ -24,7 +24,15 @@ const NavBar = () => {
         >
           Log in
         </button>
-        {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+
+        <AnimatePresence
+          drag
+          initial={false}
+          exitBeforeEnter={true}
+          onExitComplete={() => null}
+        >
+          {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+        </AnimatePresence>
       </li>
     </ul>
   );

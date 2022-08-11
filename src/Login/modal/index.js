@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import Login from "../backdrop/Login";
-import Backdrop from "../backdrop/Login";
+import Backdrop from "../backdrop/Backdrop";
 
 const Modal = ({ handleClose, text }) => {
   const dropIn = {
