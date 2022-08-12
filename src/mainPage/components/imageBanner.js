@@ -1,16 +1,46 @@
 import React from "react";
-import "../styles/ImageBanner.css";
+import { Slide } from "react-slideshow-image";
+import "../styles/imageBanner.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
 const ImageBanner = () => {
+  const [images, setImages] = useState([]);
+  const pullSlideImages = async () => {
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data.images;
+        setImages(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    pullSlideImages();
+  }, []);
+  const properties = {
+    duration: 2000,
+    autoplay: true,
+    transitonDuration: 500,
+    arrows: true,
+    infinite: true,
+    indicators: true,
+  };
   return (
     <div className="imageBanner-container">
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuo_VfGXmQbbJxy4aRPGOh-uyQsPycHq_HEQ&usqp=CAU"
-        alt="fisherman"
-      />
+      <Slide className="image-slider" {...properties}>
+        {images.map((slideImage, index) => (
+          <div className="each-slide" key={index}>
+            <div style={{ backgroundImage: `url(${slideImage.url})` }} />
+          </div>
+        ))}
+      </Slide>
     </div>
   );
 };
