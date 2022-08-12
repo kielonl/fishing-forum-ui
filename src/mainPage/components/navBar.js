@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Modal from "../../Login/modal/index";
-import "../styles/NavBar.css";
+import Modal from "../../Login/modal/Modal";
+import "../styles/navBar.css";
 
 const NavBar = () => {
   const [modalOpen, setModalOpen] = useState(false);

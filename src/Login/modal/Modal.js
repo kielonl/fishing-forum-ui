@@ -2,11 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Backdrop from "../backdrop/Backdrop";
 import axios from "axios";
-
+const url = process.env.REACT_APP_LOGIN_ENDPOINT;
 const Modal = ({ handleClose, text }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const url = "http://localhost:8080/auth/login";
   const handleSubmit = async () => {
     axios
       .post(url, {
