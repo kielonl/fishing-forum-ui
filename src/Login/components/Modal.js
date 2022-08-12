@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 import Backdrop from "./Backdrop";
+import ErrorBox from "../../mainPage/components/ErrorBox";
 import { UserContext } from "../../App";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
 const Modal = ({ handleClose, text }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errorMessage, setErrorMessage] = useState({});
   const { setUser } = useContext(UserContext);
 
   const handleSubmit = async () => {
@@ -23,9 +24,17 @@ const Modal = ({ handleClose, text }) => {
         const data = response.data.result[0];
         setUser(data);
         handleClose();
+        setErrorMessage({
+          value: "",
+          ifError: false,
+        });
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage({
+          value: "",
+          ifError: true,
+        });
+        console.log(error.response.data.message);
       });
   };
   const dropIn = {
@@ -76,6 +85,7 @@ const Modal = ({ handleClose, text }) => {
           >
             Log in
           </motion.button>
+          <ErrorBox error={errorMessage} />
         </div>
       </motion.div>
     </Backdrop>

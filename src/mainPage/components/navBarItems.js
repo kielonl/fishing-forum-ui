@@ -7,9 +7,9 @@ const NavBarItems = (props) => {
         <img className="navbar-logo" src={logo} alt="logo" />
       </li>
       <div className="navbar-categories">
-        {props.items.map((category) => {
+        {props.items.map((category, index) => {
           return (
-            <li className="navbar-item not-bold">
+            <li key={index} className="navbar-item not-bold">
               <div>{category}</div>
             </li>
           );
