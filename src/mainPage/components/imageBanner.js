@@ -1,14 +1,9 @@
 import React from "react";
-<<<<<<< HEAD
 import { Slide } from "react-slideshow-image";
-import "../styles/imageBanner.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
-
-=======
 import "../styles/imageBanner.css";
->>>>>>> loginModal
+const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
 const ImageBanner = () => {
   const [images, setImages] = useState([]);
@@ -39,7 +34,7 @@ const ImageBanner = () => {
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
-      <Slide className="image-slider" {...properties}>
+      <Slide className="image-slider" {...properties} cssClass="image-slider">
         {images.map((slideImage, index) => (
           <div className="each-slide" key={index}>
             <div style={{ backgroundImage: `url(${slideImage.url})` }} />
