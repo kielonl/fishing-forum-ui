@@ -1,10 +1,14 @@
 import React from "react";
+<<<<<<< HEAD
 import { Slide } from "react-slideshow-image";
 import "../styles/imageBanner.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
+=======
+import "../styles/imageBanner.css";
+>>>>>>> loginModal
 
 const ImageBanner = () => {
   const [images, setImages] = useState([]);
