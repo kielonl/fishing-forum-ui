@@ -1,34 +1,20 @@
 import React, { useContext } from "react";
-import logo from "../logo.jpg";
 
 import LogInButton from "./logInButton";
 import DisplayUsername from "./userNickname";
+import NavBarItems from "./navBarItems";
+
 import { UserContext } from "../../App";
 import "../styles/navBar.css";
 
-const NavBar = (props) => {
+const NavBar = () => {
   const { user } = useContext(UserContext);
 
   console.log(user);
+  const Items = ["wedkarstwo", "rybactwo", "myslictwo", "kulinarne"];
   return (
     <ul className="navbar-main">
-      <li>
-        <img className="navbar-logo" src={logo} alt="logo" />
-      </li>
-      <div className="navbar-categories">
-        <li className="navbar-item bold">
-          <div>wedkarstwo</div>
-        </li>
-        <li className="navbar-item not-bold">
-          <div>rybactwo</div>
-        </li>
-        <li className="navbar-item not-bold">
-          <div>myslictwo</div>
-        </li>
-        <li className="navbar-item not-bold">
-          <div>kulinarne</div>
-        </li>
-      </div>
+      <NavBarItems items={Items} />
       <li className="navbar-login not-bold">
         {Object.keys(user).length === 0 ? <LogInButton /> : <DisplayUsername />}
       </li>

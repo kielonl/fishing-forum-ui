@@ -6,7 +6,7 @@ import Backdrop from "./Backdrop";
 import { UserContext } from "../../App";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
-const Modal = ({ handleClose, text }, props) => {
+const Modal = ({ handleClose, text }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
