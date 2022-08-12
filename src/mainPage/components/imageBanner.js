@@ -1,22 +1,26 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "../styles/imageBanner.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
 const ImageBanner = () => {
-  const slideImages = [
-    {
-      url: "https://ipla.pluscdn.pl/dituel/cp/1t/1tk62pu34rqvkhg3c26zxrpq3d7xgfdb.jpg",
-      caption: "Slide 1",
-    },
-    {
-      url: "https://imgcdn1.przelom.pl/im/v1/news-900-widen-wm/2020/03/30/30423_1585584202_97964700.jpg",
-      caption: "Slide 2",
-    },
-    {
-      url: "https://d-art.ppstatic.pl/kadry/k/r/1/93/33/58c04527eddcc_o_medium.jpg",
-      caption: "Slide 3",
-    },
-  ];
+  const [images, setImages] = useState([]);
+  const pullSlideImages = async () => {
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data.images;
+        setImages(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    pullSlideImages();
+  }, []);
   const properties = {
     duration: 2000,
     autoplay: true,
@@ -31,7 +35,7 @@ const ImageBanner = () => {
         <div>WEDKARZE TYGODNIA</div>
       </div>
       <Slide className="image-slider" {...properties}>
-        {slideImages.map((slideImage, index) => (
+        {images.map((slideImage, index) => (
           <div className="each-slide" key={index}>
             <div style={{ backgroundImage: `url(${slideImage.url})` }}>
               {/* <span>{slideImage.caption}</span> */}
