@@ -19,7 +19,8 @@ const Modal = ({ handleClose, text }) => {
         password: password,
       })
       .then((response) => {
-        const data = response.data[0];
+        console.log(response.data[0]);
+        const data = response.data.result[0];
         setUser(data);
         handleClose();
       })
