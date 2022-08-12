@@ -1,43 +1,14 @@
-import React, { useState, useContext } from "react";
-import { AnimatePresence } from "framer-motion";
-import Modal from "../../Login/modal/Modal";
-
+import React, { useContext } from "react";
 import logo from "../logo.jpg";
+
+import LogInButton from "./logInButton";
+import DisplayUsername from "./userNickname";
+import { UserContext } from "../../App";
 import "../styles/navBar.css";
 
-import { UserContext } from "../../App";
-
 const NavBar = (props) => {
-  const [modalOpen, setModalOpen] = useState(false);
   const { user } = useContext(UserContext);
-  const close = () => {
-    setModalOpen(false);
-  };
-  const open = () => {
-    setModalOpen(true);
-  };
-  const logInButton = () => {
-    return (
-      <>
-        <button
-          className="navbar-login-button"
-          onClick={() => (modalOpen ? close() : open())}
-        >
-          Log in
-        </button>
-        <AnimatePresence
-          initial={false}
-          exitBeforeEnter={true}
-          onExitComplete={() => null}
-        >
-          {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
-        </AnimatePresence>
-      </>
-    );
-  };
-  const displayUsername = () => {
-    return <div className="navbar-username">{user.username}</div>;
-  };
+
   console.log(user);
   return (
     <ul className="navbar-main">
@@ -59,8 +30,7 @@ const NavBar = (props) => {
         </li>
       </div>
       <li className="navbar-login not-bold">
-        {console.log(user)}
-        {Object.keys(user).length === 0 ? logInButton() : displayUsername()}
+        {Object.keys(user).length === 0 ? <LogInButton /> : <DisplayUsername />}
       </li>
     </ul>
   );

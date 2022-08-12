@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-import Backdrop from "../backdrop/Backdrop";
+import Backdrop from "./Backdrop";
 import { UserContext } from "../../App";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
