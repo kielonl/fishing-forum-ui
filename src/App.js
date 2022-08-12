@@ -7,7 +7,7 @@ import * as storageManager from "./storageManager";
 export const UserContext = React.createContext();
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     setUser(storageManager.read("user"));

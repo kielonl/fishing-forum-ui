@@ -35,6 +35,10 @@ const NavBar = (props) => {
       </>
     );
   };
+  const displayUsername = () => {
+    return <div className="navbar-username">{user.username}</div>;
+  };
+  console.log(user);
   return (
     <ul className="navbar-main">
       <li>
@@ -54,7 +58,10 @@ const NavBar = (props) => {
           <div>kulinarne</div>
         </li>
       </div>
-      <li className="navbar-login not-bold">{logInButton()}</li>
+      <li className="navbar-login not-bold">
+        {console.log(user)}
+        {Object.keys(user).length === 0 ? logInButton() : displayUsername()}
+      </li>
     </ul>
   );
 };

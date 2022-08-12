@@ -21,7 +21,7 @@ const Modal = ({ handleClose, text }, props) => {
       .then((response) => {
         const data = response.data[0];
         setUser(data);
-        window.location.reload();
+        handleClose();
       })
       .catch((error) => {
         console.log(error);
