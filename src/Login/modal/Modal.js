@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 import Backdrop from "../backdrop/Backdrop";
-import { UserContext } from "../../mainPage/mainPage";
+import { UserContext } from "../../App";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
 console.log(url);
@@ -21,7 +21,6 @@ const Modal = ({ handleClose, text }, props) => {
       .then((response) => {
         const data = response.data[0];
         setUser(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
