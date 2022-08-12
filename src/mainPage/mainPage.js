@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "./components/navBar";
-import ImageBanner from "./components/imageBanner";
-import Content from "./components/content";
+import NavBar from "./components/NavBar";
+import ImageBanner from "./components/ImageBanner";
+import Content from "./components/Content";
 
 const MainPage = () => {
   return (

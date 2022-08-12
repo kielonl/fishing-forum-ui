@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
       storageManager.save("user", user);
-      console.log(user);
     }
   }, [user]);
   return (
