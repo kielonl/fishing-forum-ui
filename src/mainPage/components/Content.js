@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/Content.css";
+import "../styles/Content.scss";
 import Post from "./Post";
 
 const Content = () => {

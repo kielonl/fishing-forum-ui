@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Modal from "../../Login/modal/Modal";
 
 import logo from "../logo.jpg";
-import "../styles/navBar.css";
+import "../styles/navBar.scss";
 
 const NavBar = () => {
   const [modalOpen, setModalOpen] = useState(false);
