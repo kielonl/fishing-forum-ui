@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Backdrop from "../backdrop/Backdrop";
 import axios from "axios";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT;
+const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
+console.log(url);
 const Modal = ({ handleClose, text }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
