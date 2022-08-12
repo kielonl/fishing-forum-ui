@@ -1,3 +1,5 @@
+$borderColor: gray;
+
 .content-container {
     display: flex;
     justify-content: center;
@@ -5,7 +7,7 @@
 }
 
 .content-main-block {
-    border: 2px solid gray;
+    border: 2px solid $borderColor;
     width: 65vw;
     height: max-content;
     margin: 2em;
@@ -13,9 +15,9 @@
 }
 
 .content-post {
-    border: 1px solid gray;
-    width: 45vw;
-    margin: 1em
+    border: 1px solid $borderColor;
+    width: 35vw;
+    margin: 1em;
 }
 
 .content-post-title {
@@ -23,5 +25,5 @@
 }
 
 .content-post-description {
-    margin: .5em
+    margin: 0.5em;
 }

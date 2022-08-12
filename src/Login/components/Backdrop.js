@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import "../styles/Modal.css";
+import "../styles/Modal.scss";
 
 const Backdrop = ({ children, onClick }) => {
   return (

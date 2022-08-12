@@ -2,7 +2,7 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/imageBanner.css";
+import "../styles/imageBanner.scss";
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
 const ImageBanner = () => {

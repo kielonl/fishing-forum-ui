@@ -5,7 +5,7 @@ import DisplayUsername from "./UserNickname";
 import NavBarItems from "./NavBarItems";
 
 import { UserContext } from "../../App";
-import "../styles/navBar.css";
+import "../styles/navBar.scss";
 
 const NavBar = () => {
   const { user } = useContext(UserContext);

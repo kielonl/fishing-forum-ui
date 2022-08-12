@@ -1,11 +1,13 @@
 @import "react-slideshow-image/dist/styles.css";
 
-.each-slide>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    height: 60vh
+.each-slide {
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        height: 60vh
+    }
 }
 
 .imageBanner-container {
