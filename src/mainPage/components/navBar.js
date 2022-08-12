@@ -5,7 +5,7 @@ import Modal from "../../Login/modal/Modal";
 import logo from "../logo.jpg";
 import "../styles/navBar.css";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const close = () => {
     setModalOpen(false);

@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import Backdrop from "../backdrop/Backdrop";
 import axios from "axios";
+
+import Backdrop from "../backdrop/Backdrop";
+import { UserContext } from "../../mainPage/mainPage";
+
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
 console.log(url);
-const Modal = ({ handleClose, text }) => {
+const Modal = ({ handleClose, text }, props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const { setUser } = useContext(UserContext);
   const handleSubmit = async () => {
     axios
       .post(url, {
@@ -15,6 +20,7 @@ const Modal = ({ handleClose, text }) => {
       })
       .then((response) => {
         const data = response.data[0];
+        setUser(data);
         console.log(data);
       })
       .catch((error) => {
@@ -40,7 +46,6 @@ const Modal = ({ handleClose, text }) => {
       y: "-100vh",
     },
   };
-
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
