@@ -6,12 +6,12 @@ import Backdrop from "../backdrop/Backdrop";
 import { UserContext } from "../../App";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
-console.log(url);
 const Modal = ({ handleClose, text }, props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const { setUser } = useContext(UserContext);
+
   const handleSubmit = async () => {
     axios
       .post(url, {
@@ -21,6 +21,7 @@ const Modal = ({ handleClose, text }, props) => {
       .then((response) => {
         const data = response.data[0];
         setUser(data);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);

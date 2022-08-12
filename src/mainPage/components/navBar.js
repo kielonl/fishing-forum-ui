@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 import Modal from "../../Login/modal/Modal";
 
 import logo from "../logo.jpg";
 import "../styles/navBar.css";
 
+import { UserContext } from "../../App";
+
 const NavBar = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useContext(UserContext);
   const close = () => {
     setModalOpen(false);
   };
   const open = () => {
     setModalOpen(true);
+  };
+  const logInButton = () => {
+    return (
+      <>
+        <button
+          className="navbar-login-button"
+          onClick={() => (modalOpen ? close() : open())}
+        >
+          Log in
+        </button>
+        <AnimatePresence
+          initial={false}
+          exitBeforeEnter={true}
+          onExitComplete={() => null}
+        >
+          {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+        </AnimatePresence>
+      </>
+    );
   };
   return (
     <ul className="navbar-main">
@@ -32,21 +54,7 @@ const NavBar = (props) => {
           <div>kulinarne</div>
         </li>
       </div>
-      <li className="navbar-login not-bold">
-        <button
-          className="navbar-login-button"
-          onClick={() => (modalOpen ? close() : open())}
-        >
-          Log in
-        </button>
-        <AnimatePresence
-          initial={false}
-          exitBeforeEnter={true}
-          onExitComplete={() => null}
-        >
-          {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
-        </AnimatePresence>
-      </li>
+      <li className="navbar-login not-bold">{logInButton()}</li>
     </ul>
   );
 };
