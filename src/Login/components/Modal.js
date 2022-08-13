@@ -21,20 +21,29 @@ const Modal = ({ handleClose, text }) => {
       })
       .then((response) => {
         console.log(response.data[0]);
-        const data = response.data.result[0];
+        // const data = response.data.result[0];
+        const data = {
+          username: "jarek",
+          uuid: "123",
+        };
         setUser(data);
         handleClose();
         setErrorMessage({
-          value: "",
-          ifError: false,
+          value: "nie error",
+          ifError: true,
         });
       })
       .catch((error) => {
         setErrorMessage({
-          value: "",
+          value: "tak error",
           ifError: true,
         });
-        console.log(error.response.data.message);
+        const data = {
+          username: "jarek",
+          uuid: "123",
+        };
+        setUser(data);
+        // console.log(error.response.data.message);
       });
   };
   const dropIn = {

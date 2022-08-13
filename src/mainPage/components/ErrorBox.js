@@ -3,14 +3,13 @@ import "../styles/ErrorBox.scss";
 
 const ErrorBox = (props) => {
   return (
-    // <p
-    //   className={
-    //     props.ifError ? "error-true error-box" : "error-false error-box"
-    //   }
-    // >
-    //   {props.error}
-    // </p>
-    <div>{props.error}</div>
+    <p
+      className={
+        props.error.ifError ? "error-true error-box" : "error-false error-box"
+      }
+    >
+      {props.error.value}
+    </p>
   );
 };
 export default ErrorBox;
