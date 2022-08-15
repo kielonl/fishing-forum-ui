@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import MainPage from "./mainPage/mainPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import MainPage from "./mainPage/mainPage";
+import UserProfile from "./userProfile/UserProfile";
 import * as storageManager from "./storageManager";
 
 export const UserContext = React.createContext();
@@ -22,6 +23,7 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <Routes>
           <Route exact path="/" element={<MainPage />} />
+          <Route exact path="/profile" element={<UserProfile />} />
         </Routes>
       </UserContext.Provider>
     </Router>

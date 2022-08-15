@@ -15,8 +15,7 @@ const NavBar = () => {
     <ul className="navbar-main">
       <NavBarItems items={Items} />
       <li className="navbar-login not-bold">
-        {/* {Object.keys(user).length === 0 ? <LogInButton /> : <DisplayUsername />} */}
-        <LogInButton />
+        {Object.keys(user).length === 0 ? <LogInButton /> : <DisplayUsername />}
       </li>
     </ul>
   );
