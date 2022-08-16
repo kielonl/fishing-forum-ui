@@ -1,12 +1,13 @@
-import LeftSide from "./components/leftSide/LeftSide";
-import RightSide from "./components/rightSide/RightSide";
+import LeftSide from "./components/leftSide/ImageSide";
+import RightSide from "./components/rightSide/DetailsSide";
+import "./styles/UserProfile.scss";
 const Profile = () => {
   return (
     <div>
       <div className="userProfile-profile">
         <div className="userProfile-main">
-          <LeftSide />
-          <RightSide />
+          <ImageSide />
+          <DetailsSide />
         </div>
       </div>
     </div>

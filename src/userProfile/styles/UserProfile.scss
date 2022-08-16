@@ -13,13 +13,13 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.userProfile-leftSide,
-.userProfile-rightSide {
+.userProfile-imageSide,
+.userProfile-detailsSide {
     height: 100%;
     width: 50%;
 }
 
-.userProfile-leftSide {
+.userProfile-imageSide {
     border-right: 1px solid black;
     display: flex;
     align-items: center;

@@ -3,11 +3,11 @@ import { UserContext } from "../../../../App";
 
 import placeholder from "../../../assets/placeholder.jpg";
 
-const LeftSide = () => {
+const ImageSide = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="userProfile-leftSide">
+    <div className="userProfile-imageSide">
       <div className="userProfile-profileImage-container">
         <div className="userProfile-username">{user.username}</div>
         <img
@@ -19,4 +19,4 @@ const LeftSide = () => {
     </div>
   );
 };
-export default LeftSide;
+export default ImageSide;

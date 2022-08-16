@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import MainPage from "./mainPage/mainPage";
-import UserProfile from "./userProfile/UserProfile";
+import Profile from "./userProfile/UserProfile";
 import NavBar from "./mainPage/components/NavBar";
 import * as storageManager from "./storageManager";
 
