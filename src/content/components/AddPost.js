@@ -1,13 +1,17 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 
-import AddPostButton from "./AddPostButton";
 import { UserContext } from "../../App";
+import ErrorBox from "../../mainPage/components/ErrorBox";
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/post/create";
 
 const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    value: "asdfasdf",
+    ifError: true,
+  });
   const { user } = useContext(UserContext);
 
   const handleSubmit = () => {
@@ -19,6 +23,7 @@ const AddPost = ({ setMode }) => {
       })
       .catch((error) => {
         setMode(true);
+        setErrorMessage({ value: "asdfasdf", ifError: true });
         console.log(error);
       });
   };
@@ -33,8 +38,9 @@ const AddPost = ({ setMode }) => {
         placeholder="cos"
         onChange={(e) => setContent(e.target.value)}
       />
-      <button onClick={handleSubmit} className="addPostButton">
-        <AddPostButton />
+      <ErrorBox error={errorMessage} />
+      <button onClick={handleSubmit} className="content-addPost-button">
+        Add Post
       </button>
     </div>
   );
