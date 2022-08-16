@@ -6,8 +6,10 @@ const DisplayUsername = () => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   return (
-    <div className="navbar-username" onClick={() => navigate("/profile")}>
-      {user.username}
+    <div className="navbar-username-wrapper">
+      <div className="navbar-username" onClick={() => navigate("/profile")}>
+        {user.username}
+      </div>
     </div>
   );
 };

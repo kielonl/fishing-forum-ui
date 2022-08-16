@@ -70,8 +70,16 @@
 }
 
 .navbar-username {
+    display: flex;
     color: white;
     font-weight: bold;
-    margin: .8em 1.4em .8em 1.4em;
     cursor: pointer;
+
+}
+
+.navbar-username-wrapper {
+    height: 8.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
