@@ -10,7 +10,7 @@ import "../styles/navBar.scss";
 const NavBar = () => {
   const { user } = useContext(UserContext);
 
-  const Items = ["wedkarstwo", "rybactwo", "myslictwo", "kulinarne", "profile"];
+  const Items = ["wedkarstwo", "rybactwo", "myslictwo", "kulinarne"];
   return (
     <ul className="navbar-main">
       <NavBarItems items={Items} />

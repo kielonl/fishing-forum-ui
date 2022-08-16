@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import NavBar from "../../mainPage/components/NavBar";
 import placeholder from "../assets/placeholder.jpg";
 
 import { UserContext } from "../../App";
@@ -11,7 +10,6 @@ const Profile = () => {
   return (
     <div>
       <div className="userProfile-container">
-        <NavBar />
         <div className="userProfile-profile">
           <div className="userProfile-main">
             <div className="userProfile-leftSide">
