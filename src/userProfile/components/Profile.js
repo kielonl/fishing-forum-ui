@@ -23,26 +23,24 @@ const Profile = () => {
               </div>
             </div>
             <div className="userProfile-rightSide">
-              <div className="userProfile-details">
-                <div className="userProfile-details-inputs">
-                  <div className="userProfile-details-address">
-                    <div className="userProfile-address-row">
-                      <input type="text" placeholder="Country" />
-                      <input type="text" placeholder="City" />
-                    </div>
-                    <div className="userProfile-address-row">
-                      <input type="text" placeholder="Street" />
-                      <input type="text" placeholder="Voivodeship" />
-                    </div>
-                    <div className="userProfile-address-row">
-                      Fishing card?
-                      <input type="checkbox" />
-                      <input type="number" placeholder="Years of experience" />
-                      <input type="number" placeholder="Biggest catch" />
-                    </div>
-                    <div className="userProfile-button-container">
-                      <button className="userProfile-button">Save</button>
-                    </div>
+              <div className="userProfile-details-inputs">
+                <div className="userProfile-details-address">
+                  <div className="userProfile-address-row">
+                    <input type="text" placeholder="Country" />
+                    <input type="text" placeholder="City" />
+                  </div>
+                  <div className="userProfile-address-row">
+                    <input type="text" placeholder="Street" />
+                    <input type="text" placeholder="Voivodeship" />
+                  </div>
+                  <div className="userProfile-address-row">
+                    Fishing card?
+                    <input type="checkbox" />
+                    <input type="number" placeholder="Years of experience" />
+                    <input type="number" placeholder="Biggest catch" />
+                  </div>
+                  <div className="userProfile-button-container">
+                    <button className="userProfile-button">Save</button>
                   </div>
                 </div>
               </div>
