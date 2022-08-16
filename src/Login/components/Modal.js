@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import Backdrop from "../backdrop/Backdrop";
 import axios from "axios";
+
+import Backdrop from "./Backdrop";
+import ErrorBox from "../../mainPage/components/ErrorBox";
+import { UserContext } from "../../App";
+
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
-console.log(url);
 const Modal = ({ handleClose, text }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState({});
+  const { setUser } = useContext(UserContext);
+
   const handleSubmit = async () => {
     axios
       .post(url, {
@@ -14,11 +20,20 @@ const Modal = ({ handleClose, text }) => {
         password: password,
       })
       .then((response) => {
-        const data = response.data[0];
-        console.log(data);
+        const data = response.data.result[0];
+        setUser(data);
+        handleClose();
+        setErrorMessage({
+          value: "",
+          ifError: false,
+        });
       })
       .catch((error) => {
         console.log(error);
+        setErrorMessage({
+          value: error.response.data.message,
+          ifError: true,
+        });
       });
   };
   const dropIn = {
@@ -40,7 +55,6 @@ const Modal = ({ handleClose, text }) => {
       y: "-100vh",
     },
   };
-
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -70,6 +84,7 @@ const Modal = ({ handleClose, text }) => {
           >
             Log in
           </motion.button>
+          <ErrorBox error={errorMessage} />
         </div>
       </motion.div>
     </Backdrop>
