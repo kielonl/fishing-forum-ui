@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import MainPage from "./mainPage/mainPage";
-import Profile from "./userProfile/UserProfile";
+import MainPage from "./mainPage/MainPage";
+import Profile from "./userProfile/Profile";
 import NavBar from "./mainPage/components/NavBar";
 import * as storageManager from "./storageManager";
 
@@ -25,7 +25,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<MainPage />} />
-          <Route exact path="/profile" element={<UserProfile />} />
+          <Route exact path="/profile" element={<Profile />} />
         </Routes>
       </UserContext.Provider>
     </Router>

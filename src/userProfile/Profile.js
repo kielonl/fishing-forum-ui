@@ -1,5 +1,5 @@
-import LeftSide from "./components/leftSide/ImageSide";
-import RightSide from "./components/rightSide/DetailsSide";
+import ImageSide from "./components/leftSide/ImageSide";
+import DetailsSide from "./components/rightSide/DetailsSide";
 import "./styles/UserProfile.scss";
 const Profile = () => {
   return (

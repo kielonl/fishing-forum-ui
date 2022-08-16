@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { UserContext } from "../../../../App";
+import { UserContext } from "../../../App";
 
-import placeholder from "../../../assets/placeholder.jpg";
+import placeholder from "../../assets/placeholder.jpg";
 
 const ImageSide = () => {
   const { user } = useContext(UserContext);

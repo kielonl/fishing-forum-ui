@@ -29,6 +29,7 @@ const Modal = ({ handleClose, text }) => {
         });
       })
       .catch((error) => {
+        console.log(error);
         setErrorMessage({
           value: error.response.data.message,
           ifError: true,
