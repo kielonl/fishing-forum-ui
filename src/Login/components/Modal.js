@@ -20,30 +20,19 @@ const Modal = ({ handleClose, text }) => {
         password: password,
       })
       .then((response) => {
-        console.log(response.data[0]);
-        // const data = response.data.result[0];
-        const data = {
-          username: "jarek",
-          uuid: "123",
-        };
+        const data = response.data.result[0];
         setUser(data);
         handleClose();
         setErrorMessage({
-          value: "nie error",
-          ifError: true,
+          value: "",
+          ifError: false,
         });
       })
       .catch((error) => {
         setErrorMessage({
-          value: "tak error",
+          value: error.response.data.message,
           ifError: true,
         });
-        const data = {
-          username: "jarek",
-          uuid: "123",
-        };
-        setUser(data);
-        // console.log(error.response.data.message);
       });
   };
   const dropIn = {
