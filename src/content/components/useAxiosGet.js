@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 
-export const AxiosPost = (url) => {
+export const useAxiosGet = (url) => {
   const [post, setPost] = useState(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);

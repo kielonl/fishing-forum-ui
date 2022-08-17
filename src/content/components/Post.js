@@ -1,11 +1,11 @@
 import React from "react";
 
-import { AxiosPost } from "./AxiosPost";
+import { useAxiosGet } from "./useAxiosGet";
 import ListPosts from "./ListPosts";
 
 const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/post";
 const Post = () => {
-  const { post, error, loaded } = AxiosPost(url);
+  const { post, error, loaded } = useAxiosGet(url);
   console.log(post);
 
   if (loaded) {

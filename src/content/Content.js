@@ -14,9 +14,7 @@ const Content = () => {
       <div className="content-main-block">
         <Post />
       </div>
-      {console.log(addingMode)}
 
-      {console.log(addingMode)}
       {addingMode ? (
         <AddPost setMode={setAddingMode} />
       ) : (
