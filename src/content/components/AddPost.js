@@ -9,8 +9,8 @@ const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [errorMessage, setErrorMessage] = useState({
-    value: "asdfasdf",
-    ifError: true,
+    value: "",
+    ifError: false,
   });
   const { user } = useContext(UserContext);
 
@@ -23,8 +23,11 @@ const AddPost = ({ setMode }) => {
       })
       .catch((error) => {
         setMode(true);
-        setErrorMessage({ value: "asdfasdf", ifError: true });
-        console.log(error);
+        setErrorMessage({
+          value: error.response.data.message,
+          ifError: true,
+        });
+        console.log(error.response.data.message);
       });
   };
   return (
