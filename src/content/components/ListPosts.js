@@ -3,7 +3,6 @@ import React from "react";
 const ListPosts = ({ posts }) => {
   return (
     <div>
-      {console.log(posts)}
       {posts.map(({ title, content, index }) => {
         return (
           <div>

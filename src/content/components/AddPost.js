@@ -19,7 +19,6 @@ const AddPost = ({ setMode }) => {
       .post(url, { title: title, content: content, author: user.user_id })
       .then((response) => {
         setMode(false);
-        console.log(response);
       })
       .catch((error) => {
         setMode(true);
@@ -27,7 +26,6 @@ const AddPost = ({ setMode }) => {
           value: error.response.data.message,
           ifError: true,
         });
-        console.log(error.response.data.message);
       });
   };
   return (
@@ -38,7 +36,7 @@ const AddPost = ({ setMode }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="cos"
+        placeholder="Content of your post..."
         onChange={(e) => setContent(e.target.value)}
       />
       <ErrorBox error={errorMessage} />
