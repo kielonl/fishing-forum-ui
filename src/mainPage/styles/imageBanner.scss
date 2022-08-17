@@ -2,11 +2,9 @@
 
 .each-slide {
     div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-size: cover;
-        height: 60vh
+        background-size:cover;
+        height: 90vh;
+        width:100vw;
     }
 }
 
@@ -31,6 +29,6 @@
 }
 
 .image-slider {
-    height: 40vh;
+    height: 60vh;
     z-index: -10
 }
