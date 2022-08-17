@@ -1,10 +1,23 @@
 import React from "react";
 
-const Post = ({ title, description }) => {
+import { AxiosPost } from "./AxiosPost";
+import ListPosts from "./ListPosts";
+
+const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/post";
+const Post = () => {
+  const { post, error, loaded } = AxiosPost(url);
+  console.log(post);
+
+  if (loaded) {
+    return error ? (
+      <div>Error: {error}</div>
+    ) : (
+      <ListPosts posts={post.result} />
+    );
+  }
   return (
     <div className="content-post">
-      <h1 className="content-post-title">{title}</h1>
-      <div className="content-post-description">{description}</div>
+      <div>loading</div>
     </div>
   );
 };
