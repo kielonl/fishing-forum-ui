@@ -1,6 +1,6 @@
 import React from "react";
 import ImageBanner from "./components/ImageBanner";
-import Content from "./components/Content";
+import Content from "../content/Content";
 
 const MainPage = () => {
   return (
