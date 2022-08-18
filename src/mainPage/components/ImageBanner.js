@@ -1,26 +1,13 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import "../styles/imageBanner.scss";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
+import { useApiCall } from "../../api/useApiCall";
 
 const ImageBanner = () => {
-  const [images, setImages] = useState([]);
-  const pullSlideImages = async () => {
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data.images;
-        setImages(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  useEffect(() => {
-    pullSlideImages();
-  }, []);
+  const { loading, error, response: images } = useApiCall("get", "/best");
+  if (loading) return <div>loading</div>;
+  if (error) return <div>{error}</div>;
+
   const properties = {
     duration: 2000,
     autoplay: true,

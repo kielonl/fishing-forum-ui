@@ -1,40 +1,36 @@
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 import { UserContext } from "../../App";
+import { makeRequest } from "../../api/api";
 
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/auth/login";
-const Modal = ({ handleClose, text }) => {
+const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState({});
   const { setUser } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    axios
-      .post(url, {
+    try {
+      const response = await makeRequest("post", "/auth/login", {
         username: username,
         password: password,
-      })
-      .then((response) => {
-        const data = response.data.result[0];
-        setUser(data);
-        handleClose();
-        setErrorMessage({
-          value: "",
-          ifError: false,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorMessage({
-          value: error.response.data.message,
-          ifError: true,
-        });
       });
+      const data = response.data.result[0];
+      setUser(data);
+      handleClose();
+      setErrorMessage({
+        value: "",
+        ifError: false,
+      });
+    } catch (error) {
+      setErrorMessage({
+        value: error.response.data.message,
+        ifError: true,
+      });
+    }
   };
   const dropIn = {
     hidden: {
@@ -76,14 +72,9 @@ const Modal = ({ handleClose, text }) => {
             className="login-input"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <motion.button
-            className="login-button"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={handleSubmit}
-          >
+          <button className="login-button" onClick={handleSubmit}>
             Log in
-          </motion.button>
+          </button>
           <ErrorBox error={errorMessage} />
         </div>
       </motion.div>
