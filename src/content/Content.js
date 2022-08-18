@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./styles/Content.scss";
-import Post from "./components/Post";
+import LoadPost from "./components/LoadPosts";
 import AddPost from "./components/AddPost";
 
 const Content = () => {
@@ -12,15 +12,15 @@ const Content = () => {
   return (
     <div className="content-container">
       <div className="content-main-block">
-        <Post />
+        <LoadPost />
       </div>
 
-      {addingMode ? (
-        <AddPost setMode={setAddingMode} />
-      ) : (
+      {!addingMode ? (
         <button onClick={handleClick} className="content-addPost-button">
           Add Post
         </button>
+      ) : (
+        <AddPost setMode={setAddingMode} />
       )}
     </div>
   );

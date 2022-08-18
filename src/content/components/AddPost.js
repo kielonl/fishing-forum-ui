@@ -15,12 +15,11 @@ const AddPost = ({ setMode }) => {
 
   const HandleSubmit = async () => {
     try {
-      const response = await makeRequest("post", "/post/create", {
+      await makeRequest("post", "/post/create", {
         title: title,
         content: content,
         author: user.user_id,
       });
-      console.log(response);
       setMode(false);
     } catch (error) {
       setMode(true);

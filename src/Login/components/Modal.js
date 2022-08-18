@@ -25,7 +25,6 @@ const Modal = ({ handleClose }) => {
         value: "",
         ifError: false,
       });
-      console.log(response);
     } catch (error) {
       setErrorMessage({
         value: error.response.data.message,
