@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import ListPosts from "./ListPosts";
 import { useApiCall } from "../../api/useApiCall";
 
-const Post = () => {
-  const { loading, error, response: posts } = useApiCall("get", "/post");
+import { PostContextUpdate } from "../../contexts/postContext";
 
-  if (loading) return <div>Loading</div>;
+const Post = () => {
+  const setPost = useContext(PostContextUpdate);
+  const { loading, error, response: loadedPosts } = useApiCall("get", "/post");
+  setPost(loadedPosts);
+
+  if (loading) return <div>loading</div>;
   if (error) return <div>error</div>;
-  return <ListPosts posts={posts.result} />;
+  return <ListPosts />;
 };
 export default Post;

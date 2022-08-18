@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { PostContext, PostContextUpdate } from "../../contexts/postContext";
+
 import { makeRequest } from "../../api/api";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 
@@ -7,6 +9,8 @@ const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const user = useContext(UserContext);
+  const post = useContext(PostContext);
+  const setPost = useContext(PostContextUpdate);
   const [errorMessage, setErrorMessage] = useState({
     value: "",
     ifError: false,
@@ -14,18 +18,19 @@ const AddPost = ({ setMode }) => {
 
   const HandleSubmit = async () => {
     try {
-      await makeRequest("post", "/post/create", {
+      const response = await makeRequest("post", "/post/create", {
         title: title,
         content: content,
         author: user.user_id,
       });
-      setMode(false);
+      setPost(post.result.unshift(response.data.result[0]));
     } catch (error) {
       setMode(true);
       setErrorMessage({
-        value: error.response.data.message,
+        value: error,
         ifError: true,
       });
+      console.log(error);
     }
   };
   return (
