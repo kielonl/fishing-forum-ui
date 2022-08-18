@@ -1,32 +1,16 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import { useState, useEffect } from "react";
 import "../styles/imageBanner.scss";
 import { useAsync } from "../../api/useAsync";
 
 import { pullImages } from "./pullImages";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
 
 const ImageBanner = () => {
-  // const pullSlideImages = async () => {
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       const data = response.data.images;
-  //       setImages(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   pullSlideImages();
-  // }, []);
   const { loading, error, value: images } = useAsync(pullImages);
 
   if (loading) return <div>loading</div>;
   if (error) return <div>{error}</div>;
+
   const properties = {
     duration: 2000,
     autoplay: true,
