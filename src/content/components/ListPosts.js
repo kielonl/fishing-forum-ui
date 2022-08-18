@@ -5,9 +5,9 @@ const ListPosts = ({ posts }) => {
     <div>
       {posts.map(({ title, content, post_id }) => {
         return (
-          <div key={post_id}>
-            <h1>{title}</h1>
-            <div>{content}</div>
+          <div key={post_id} className="content-post">
+            <h1 className="content-post-title">{title}</h1>
+            <div className="content-post-description">{content}</div>
           </div>
         );
       })}
