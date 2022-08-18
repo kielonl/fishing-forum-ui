@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { makeRequest } from "./api";
 
-export const useApiCall = (apiCall) => {
+export const useApiCall = (method, url) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -8,7 +9,8 @@ export const useApiCall = (apiCall) => {
   useEffect(() => {
     const getResponse = async () => {
       try {
-        const resolve = await apiCall;
+        const resolve = await makeRequest(method, url);
+
         setResponse(resolve.data);
       } catch (error) {
         setError(error);
@@ -17,6 +19,6 @@ export const useApiCall = (apiCall) => {
       }
     };
     getResponse();
-  }, []);
+  }, [method, url]);
   return { response, error, loading };
 };

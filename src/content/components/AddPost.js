@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
-import axios from "axios";
 
 import { UserContext } from "../../App";
 import ErrorBox from "../../mainPage/components/ErrorBox";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/post/create";
+import { makeRequest } from "../../api/api";
 
 const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
@@ -14,19 +13,22 @@ const AddPost = ({ setMode }) => {
   });
   const { user } = useContext(UserContext);
 
-  const handleSubmit = () => {
-    axios
-      .post(url, { title: title, content: content, author: user.user_id })
-      .then((response) => {
-        setMode(false);
-      })
-      .catch((error) => {
-        setMode(true);
-        setErrorMessage({
-          value: error.response.data.message,
-          ifError: true,
-        });
+  const HandleSubmit = async () => {
+    try {
+      const response = await makeRequest("post", "/post/create", {
+        title: title,
+        content: content,
+        author: user.user_id,
       });
+      console.log(response);
+      setMode(false);
+    } catch (error) {
+      setMode(true);
+      setErrorMessage({
+        value: error.response.data.message,
+        ifError: true,
+      });
+    }
   };
   return (
     <div className="content-addPost">
@@ -40,7 +42,7 @@ const AddPost = ({ setMode }) => {
         onChange={(e) => setContent(e.target.value)}
       />
       <ErrorBox error={errorMessage} />
-      <button onClick={handleSubmit} className="content-addPost-button">
+      <button onClick={HandleSubmit} className="content-addPost-button">
         Add Post
       </button>
     </div>
