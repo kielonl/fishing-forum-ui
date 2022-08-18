@@ -1,11 +1,15 @@
 import React from "react";
 
 import ListPosts from "./ListPosts";
-import { useAsync } from "../../api/useAsync";
-import { getPosts } from "./posts";
+import { useApiCall } from "../../api/useAsync";
+import { makeRequest } from "../../api/api";
 
 const Post = () => {
-  const { loading, error, value: posts } = useAsync(getPosts);
+  const {
+    loading,
+    error,
+    response: posts,
+  } = useApiCall(makeRequest("get", "/post"));
 
   if (loading) return <div>Loading</div>;
   if (error) return <div>error</div>;

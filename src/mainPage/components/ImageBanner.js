@@ -1,13 +1,16 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "../styles/imageBanner.scss";
-import { useAsync } from "../../api/useAsync";
+import { useApiCall } from "../../api/useAsync";
 
-import { pullImages } from "./pullImages";
+import { makeRequest } from "../../api/api";
 
 const ImageBanner = () => {
-  const { loading, error, value: images } = useAsync(pullImages);
-
+  const {
+    loading,
+    error,
+    response: images,
+  } = useApiCall(makeRequest("get", "/best"));
   if (loading) return <div>loading</div>;
   if (error) return <div>{error}</div>;
 
