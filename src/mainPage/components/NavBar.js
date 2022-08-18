@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 
+import { UserContext } from "../../contexts/userContext";
 import LogInButton from "./LogInButton";
 import DisplayUsername from "./UserNickname";
 import NavBarItems from "./NavBarItems";
 
-import { UserContext } from "../../App";
 import "../styles/navBar.scss";
 
 const NavBar = () => {
-  const { user } = useContext(UserContext);
-
+  const user = useContext(UserContext);
   const Items = ["wedkarstwo", "rybactwo", "myslictwo", "kulinarne"];
   return (
     <ul className="navbar-main">

@@ -1,17 +1,16 @@
 import { useState, useContext } from "react";
-
-import { UserContext } from "../../App";
-import ErrorBox from "../../mainPage/components/ErrorBox";
+import { UserContext } from "../../contexts/userContext";
 import { makeRequest } from "../../api/api";
+import ErrorBox from "../../mainPage/components/ErrorBox";
 
 const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const user = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState({
     value: "",
     ifError: false,
   });
-  const { user } = useContext(UserContext);
 
   const HandleSubmit = async () => {
     try {

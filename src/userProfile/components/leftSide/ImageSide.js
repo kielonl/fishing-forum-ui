@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { UserContext } from "../../../App";
 
+import { UserContext } from "../../../contexts/userContext";
 import placeholder from "../../assets/placeholder.jpg";
 
 const ImageSide = () => {
-  const { user } = useContext(UserContext);
-
+  const user = useContext(UserContext);
   return (
     <div className="userProfile-imageSide">
       <div className="userProfile-profileImage-container">

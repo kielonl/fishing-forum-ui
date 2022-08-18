@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
-import { UserContext } from "../../App";
+import { UserContext, UserContextUpdate } from "../../contexts/userContext";
 import { makeRequest } from "../../api/api";
 
 const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState({});
-  const { setUser } = useContext(UserContext);
-
+  const user = useContext(UserContext);
+  const setUser = useContext(UserContextUpdate);
   const handleSubmit = async () => {
     try {
       const response = await makeRequest("post", "/auth/login", {
@@ -19,17 +19,22 @@ const Modal = ({ handleClose }) => {
         password: password,
       });
       const data = response.data.result[0];
+      console.log(data);
       setUser(data);
+      console.log(user);
+
+      // console.log(GetUser());
       handleClose();
       setErrorMessage({
         value: "",
         ifError: false,
       });
     } catch (error) {
-      setErrorMessage({
-        value: error.response.data.message,
-        ifError: true,
-      });
+      console.log(error);
+      // setErrorMessage({
+      //   value: error,
+      //   ifError: true,
+      // });
     }
   };
   const dropIn = {
