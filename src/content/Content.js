@@ -8,18 +8,19 @@ import { UserContext } from "../contexts/userContext";
 const Content = () => {
   const [addingMode, setAddingMode] = useState(false);
   const user = useContext(UserContext);
+
   const displayButton = () => {
     if (Object.keys(user).length !== 0) {
-      if (!addingMode) {
-        return (
-          <button onClick={handleClick} className="content-addPost-button">
-            Add Post
-          </button>
-        );
-      }
+      return <div></div>;
+    }
+    if (addingMode) {
       return <AddPost setMode={setAddingMode} />;
     }
-    return <div></div>;
+    return (
+      <button onClick={handleClick} className="content-addPost-button">
+        Add Post
+      </button>
+    );
   };
   const handleClick = () => {
     setAddingMode(true);
