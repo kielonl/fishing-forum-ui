@@ -10,17 +10,15 @@ const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState({});
-  const user = useContext(UserContext);
   const setUser = useContext(UserContextUpdate);
+
   const handleSubmit = async () => {
     try {
       const response = await makeRequest("post", "/auth/login", {
         username: username,
         password: password,
       });
-
-      setUser(user.result.unshift(response.data.result[0]));
-
+      setUser(response.data.result[0]);
       handleClose();
       setErrorMessage({
         value: "",
@@ -28,7 +26,7 @@ const Modal = ({ handleClose }) => {
       });
     } catch (error) {
       setErrorMessage({
-        value: error,
+        value: error.respose.data.message,
         ifError: true,
       });
     }

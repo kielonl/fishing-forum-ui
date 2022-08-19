@@ -24,10 +24,11 @@ const AddPost = ({ setMode }) => {
       });
       const getResponse = await makeRequest("get", "/post");
       setPost(getResponse.data);
+      setMode(false);
     } catch (error) {
       setMode(true);
       setErrorMessage({
-        value: error,
+        value: error.response.data.message,
         ifError: true,
       });
     }
