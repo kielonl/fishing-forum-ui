@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
-import { UserContext, UserContextUpdate } from "../../contexts/userContext";
+import { UserContextUpdate } from "../../contexts/userContext";
 import { makeRequest } from "../../api/api";
 
 const Modal = ({ handleClose }) => {
