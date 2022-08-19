@@ -18,9 +18,7 @@ const Modal = ({ handleClose }) => {
         username: username,
         password: password,
       });
-      // const data = response.data.result[0];
-      // console.log(data);
-      // setUser(data);
+
       setUser(user.result.unshift(response.data.result[0]));
 
       handleClose();
@@ -29,11 +27,10 @@ const Modal = ({ handleClose }) => {
         ifError: false,
       });
     } catch (error) {
-      console.log(error);
-      // setErrorMessage({
-      //   value: error,
-      //   ifError: true,
-      // });
+      setErrorMessage({
+        value: error,
+        ifError: true,
+      });
     }
   };
   const dropIn = {
