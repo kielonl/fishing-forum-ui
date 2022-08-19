@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
-import { PostContext, PostContextUpdate } from "../../contexts/postContext";
+import { PostContextUpdate } from "../../contexts/postContext";
 
 import { makeRequest } from "../../api/api";
 import ErrorBox from "../../mainPage/components/ErrorBox";
@@ -9,7 +9,6 @@ const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const user = useContext(UserContext);
-  const post = useContext(PostContext);
   const setPost = useContext(PostContextUpdate);
   const [errorMessage, setErrorMessage] = useState({
     value: "",
@@ -18,21 +17,22 @@ const AddPost = ({ setMode }) => {
 
   const HandleSubmit = async () => {
     try {
-      const response = await makeRequest("post", "/post/create", {
+      await makeRequest("post", "/post/create", {
         title: title,
         content: content,
         author: user.user_id,
       });
-      setPost(post.result.unshift(response.data.result[0]));
+      const getResponse = await makeRequest("get", "/post");
+      setPost(getResponse.data);
     } catch (error) {
       setMode(true);
       setErrorMessage({
         value: error,
         ifError: true,
       });
-      console.log(error);
     }
   };
+
   return (
     <div className="content-addPost">
       <input

@@ -18,12 +18,11 @@ const Modal = ({ handleClose }) => {
         username: username,
         password: password,
       });
-      const data = response.data.result[0];
-      console.log(data);
-      setUser(data);
-      console.log(user);
+      // const data = response.data.result[0];
+      // console.log(data);
+      // setUser(data);
+      setUser(user.result.unshift(response.data.result[0]));
 
-      // console.log(GetUser());
       handleClose();
       setErrorMessage({
         value: "",
