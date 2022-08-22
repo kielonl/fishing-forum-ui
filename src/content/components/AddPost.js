@@ -1,18 +1,20 @@
 import { useState, useContext } from "react";
+import { UserContext } from "../../contexts/userContext";
+import { PostContextUpdate } from "../../contexts/postContext";
 
-import { UserContext } from "../../App";
-import ErrorBox from "../../mainPage/components/ErrorBox";
 import { makeRequest } from "../../api/api";
+import ErrorBox from "../../mainPage/components/ErrorBox";
 
 const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const user = useContext(UserContext);
+  const setPost = useContext(PostContextUpdate);
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState({
     value: "",
     ifError: false,
   });
-  const { user } = useContext(UserContext);
 
   const HandleSubmit = async () => {
     try {
@@ -22,6 +24,8 @@ const AddPost = ({ setMode }) => {
         author: user.user_id,
         image: image,
       });
+      const getResponse = await makeRequest("get", "/post");
+      setPost(getResponse.data);
       setMode(false);
     } catch (error) {
       setMode(true);
@@ -31,7 +35,6 @@ const AddPost = ({ setMode }) => {
       });
     }
   };
-
   const sendFile = (e) => {
     const [file] = e.target.files;
     let reader = new FileReader();
@@ -40,6 +43,7 @@ const AddPost = ({ setMode }) => {
       setImage(reader.result);
     };
   };
+
   return (
     <div className="content-addPost">
       <input

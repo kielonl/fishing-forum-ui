@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "./styles/Content.scss";
 import LoadPost from "./components/LoadPosts";
 import AddPost from "./components/AddPost";
+import { UserContext } from "../contexts/userContext";
 
 const Content = () => {
   const [addingMode, setAddingMode] = useState(false);
+  const user = useContext(UserContext);
+
+  const displayButton = () => {
+    if (Object.keys(user).length === 0) {
+      return <div></div>;
+    }
+    if (addingMode) {
+      return <AddPost setMode={setAddingMode} />;
+    }
+    return (
+      <button onClick={handleClick} className="content-addPost-button">
+        Add Post
+      </button>
+    );
+  };
   const handleClick = () => {
     setAddingMode(true);
   };
@@ -15,13 +31,7 @@ const Content = () => {
         <LoadPost />
       </div>
 
-      {!addingMode ? (
-        <button onClick={handleClick} className="content-addPost-button">
-          Add Post
-        </button>
-      ) : (
-        <AddPost setMode={setAddingMode} />
-      )}
+      <div>{displayButton()}</div>
     </div>
   );
 };

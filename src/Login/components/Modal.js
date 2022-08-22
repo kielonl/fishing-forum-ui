@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
-import { UserContext } from "../../App";
+import { UserContextUpdate } from "../../contexts/userContext";
 import { makeRequest } from "../../api/api";
 
 const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState({});
-  const { setUser } = useContext(UserContext);
+  const setUser = useContext(UserContextUpdate);
 
   const handleSubmit = async () => {
     try {
@@ -18,8 +18,7 @@ const Modal = ({ handleClose }) => {
         username: username,
         password: password,
       });
-      const data = response.data.result[0];
-      setUser(data);
+      setUser(response.data.result[0]);
       handleClose();
       setErrorMessage({
         value: "",
@@ -27,7 +26,7 @@ const Modal = ({ handleClose }) => {
       });
     } catch (error) {
       setErrorMessage({
-        value: error.response.data.message,
+        value: error.respose.data.message,
         ifError: true,
       });
     }

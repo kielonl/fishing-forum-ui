@@ -1,33 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import MainPage from "./mainPage/MainPage";
 import Profile from "./userProfile/Profile";
 import NavBar from "./mainPage/components/NavBar";
-import * as storageManager from "./storageManager";
 
-export const UserContext = React.createContext();
+import { UserProvider } from "./contexts/userContext";
 
 function App() {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setUser(storageManager.read("user"));
-  }, []);
-  useEffect(() => {
-    if (user && Object.keys(user).length !== 0) {
-      storageManager.save("user", user);
-    }
-  }, [user]);
   return (
     <Router>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserProvider>
         <NavBar />
         <Routes>
           <Route exact path="/" element={<MainPage />} />
           <Route exact path="/profile" element={<Profile />} />
         </Routes>
-      </UserContext.Provider>
+      </UserProvider>
     </Router>
   );
 }
