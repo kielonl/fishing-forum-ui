@@ -10,6 +10,7 @@ const AddPost = ({ setMode }) => {
   const [content, setContent] = useState("");
   const user = useContext(UserContext);
   const setPost = useContext(PostContextUpdate);
+  const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState({
     value: "",
     ifError: false,
@@ -21,6 +22,7 @@ const AddPost = ({ setMode }) => {
         title: title,
         content: content,
         author: user.user_id,
+        image: image,
       });
       const getResponse = await makeRequest("get", "/post");
       setPost(getResponse.data);
@@ -32,6 +34,14 @@ const AddPost = ({ setMode }) => {
         ifError: true,
       });
     }
+  };
+  const sendFile = (e) => {
+    const [file] = e.target.files;
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
   };
 
   return (
@@ -45,6 +55,7 @@ const AddPost = ({ setMode }) => {
         placeholder="Content of your post..."
         onChange={(e) => setContent(e.target.value)}
       />
+      <input type="file" onChange={sendFile} accept="image/*" />
       <ErrorBox error={errorMessage} />
       <button onClick={HandleSubmit} className="content-addPost-button">
         Add Post

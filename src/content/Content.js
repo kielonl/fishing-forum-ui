@@ -10,7 +10,7 @@ const Content = () => {
   const user = useContext(UserContext);
 
   const displayButton = () => {
-    if (Object.keys(user).length !== 0) {
+    if (Object.keys(user).length === 0) {
       return <div></div>;
     }
     if (addingMode) {
