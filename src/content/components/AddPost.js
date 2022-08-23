@@ -24,7 +24,7 @@ const AddPost = ({ setMode }) => {
         author: user.user_id,
         image: image,
       });
-      const getResponse = await makeRequest("get", "/post");
+      const getResponse = await makeRequest("get", `/post/${user?.user_id}`);
       setPost(getResponse.data);
       setMode(false);
     } catch (error) {

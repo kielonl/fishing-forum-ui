@@ -18,7 +18,7 @@ const Modal = ({ handleClose }) => {
         username: username,
         password: password,
       });
-      setUser(response.data.result[0]);
+      setUser(response.data[0]);
       handleClose();
       setErrorMessage({
         value: "",
