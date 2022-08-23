@@ -1,23 +1,34 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { makeRequest } from "./api";
+const urlInternal = process.env.REACT_APP_API;
 
-export const useApiCall = (method, url) => {
+export const PullData = (url) => {
   const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  console.log(`${urlInternal}${url}`);
   useEffect(() => {
-    const getResponse = async () => {
-      try {
-        const resolve = await makeRequest(method, url);
-        setResponse(resolve.data);
-      } catch (error) {
-        setError(error);
-      } finally {
+    axios
+      .get(`${urlInternal}${url}`)
+      .then((response) => {
+        setResponse(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-    getResponse();
-  }, [method, url]);
-  return { response, error, loading };
+      });
+  }, [url]);
+
+  return { response, loading };
+};
+
+export const makeRequest = (method, url, data = {}, headers = {}) => {
+  const response = axios({
+    method: method,
+    url: `${urlInternal}${url}`,
+    data: data,
+    headers: headers,
+  });
+  return response;
 };
