@@ -7,7 +7,7 @@ const ImageSide = () => {
   const user = useContext(UserContext);
   return (
     <div className="userProfile-imageSide">
-      <div className="userProfile-profileImage-container">
+      <div className="userProfile-profileImaage-container">
         <div className="userProfile-username">{user.username}</div>
         <img
           className="userProfile-profileImage"

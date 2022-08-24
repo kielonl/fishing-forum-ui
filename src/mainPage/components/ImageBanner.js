@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "framer-motion-carousel";
-import { apiRequest } from "../../api/api";
-import { HTTP_METHODS } from "../../constants/httpMethods";
+import { useApiCall } from "../../api/useApiCall";
 import "../styles/imageBanner.scss";
 
 const ImageBanner = () => {
-  const [images, setImages] = useState([]);
-
-  const pullData = async () => {
-    const data = await apiRequest(HTTP_METHODS.GET, "/best");
-    setImages(data);
-  };
-
-  useEffect(() => {
-    pullData();
-  }, []);
+  const { loading, error, response: images } = useApiCall("get", "/best");
+  if (loading) return <div>🚽</div>;
+  if (error) return <div>😰</div>;
 
   const renderGallery = () => {
-    if (images.length === 0) return "No ładowanie";
-
     return images.map((slideImage, index) => (
       <div className="each-slide" key={index}>
         <div style={{ backgroundImage: `url(${slideImage.url})` }} />
@@ -32,7 +22,7 @@ const ImageBanner = () => {
         <div>WEDKARZE TYGODNIA</div>
       </div>
       <div>
-        <Carousel>{images ? renderGallery() : "No błont kolego"}</Carousel>
+        <Carousel>{renderGallery()}</Carousel>
       </div>
     </div>
   );

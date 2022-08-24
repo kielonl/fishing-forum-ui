@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { apiRequest } from "../../api/api";
+import { makeRequest } from "../../api/api";
 import { PostContextUpdate } from "../../contexts/postContext";
 import { PostContext } from "../../contexts/postContext";
 
@@ -7,7 +7,7 @@ const ListPosts = () => {
   const post = useContext(PostContext);
   const setPost = useContext(PostContextUpdate);
 
-  const { loading, error, response: loadedPosts } = apiRequest("get", "/post");
+  const { loading, error, response: loadedPosts } = makeRequest("get", "/post");
   useEffect(() => {
     setPost(loadedPosts);
   }, [loadedPosts]);
