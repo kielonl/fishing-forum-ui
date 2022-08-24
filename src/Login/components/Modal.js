@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 import { UserContextUpdate } from "../../contexts/userContext";
-import { makeRequest } from "../../api/api";
+// import { makeRequest } from "../../api/api";
 
 const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
@@ -13,23 +13,23 @@ const Modal = ({ handleClose }) => {
   const setUser = useContext(UserContextUpdate);
 
   const handleSubmit = async () => {
-    try {
-      const response = await makeRequest("post", "/auth/login", {
-        username: username,
-        password: password,
-      });
-      setUser(response.data.result[0]);
-      handleClose();
-      setErrorMessage({
-        value: "",
-        ifError: false,
-      });
-    } catch (error) {
-      setErrorMessage({
-        value: error.respose.data.message,
-        ifError: true,
-      });
-    }
+    //   try {
+    //     const response = await makeRequest("post", "/auth/login", {
+    //       username: username,
+    //       password: password,
+    //     });
+    //     setUser(response.data[0]);
+    //     handleClose();
+    //     setErrorMessage({
+    //       value: "",
+    //       ifError: false,
+    //     });
+    //   } catch (error) {
+    //     setErrorMessage({
+    //       value: error.response.data.message,
+    //       ifError: true,
+    //     });
+    //   }
   };
   const dropIn = {
     hidden: {

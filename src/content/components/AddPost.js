@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { PostContextUpdate } from "../../contexts/postContext";
 
-import { makeRequest } from "../../api/api";
+import { apiRequest } from "../../api/api";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 
 const AddPost = ({ setMode }) => {
@@ -18,13 +18,13 @@ const AddPost = ({ setMode }) => {
 
   const HandleSubmit = async () => {
     try {
-      await makeRequest("post", "/post/create", {
+      await apiRequest("post", "/post/create", {
         title: title,
         content: content,
         author: user.user_id,
         image: image,
       });
-      const getResponse = await makeRequest("get", "/post");
+      const getResponse = await apiRequest("get", "/post");
       setPost(getResponse.data);
       setMode(false);
     } catch (error) {
