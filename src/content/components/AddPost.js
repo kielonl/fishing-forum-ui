@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { PostContextUpdate } from "../../contexts/postContext";
 
-import { makeRequest } from "../../api/api";
+// import { makeRequest } from "../../api/api";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 
 const AddPost = ({ setMode }) => {
@@ -17,23 +17,23 @@ const AddPost = ({ setMode }) => {
   });
 
   const HandleSubmit = async () => {
-    try {
-      await makeRequest("post", "/post/create", {
-        title: title,
-        content: content,
-        author: user.user_id,
-        image: image,
-      });
-      const getResponse = await makeRequest("get", `/post/${user?.user_id}`);
-      setPost(getResponse.data);
-      setMode(false);
-    } catch (error) {
-      setMode(true);
-      setErrorMessage({
-        value: error.response.data.message,
-        ifError: true,
-      });
-    }
+    // try {
+    //   await makeRequest("post", "/post/create", {
+    //     title: title,
+    //     content: content,
+    //     author: user.user_id,
+    //     image: image,
+    //   });
+    //   const getResponse = await makeRequest("get", `/post/${user?.user_id}`);
+    //   setPost(getResponse.data);
+    //   setMode(false);
+    // } catch (error) {
+    //   setMode(true);
+    //   setErrorMessage({
+    //     value: error.response.data.message,
+    //     ifError: true,
+    //   });
+    // }
   };
   const sendFile = (e) => {
     const [file] = e.target.files;

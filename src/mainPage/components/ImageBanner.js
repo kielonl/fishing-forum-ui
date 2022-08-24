@@ -1,32 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
+import { apiRequest } from "../../api/api";
+import { HTTP_METHODS } from "../../constants/httpMethods";
 import "../styles/imageBanner.scss";
-import { PullData } from "../../api/useApiCall";
+
+const properties = {
+  duration: 2000,
+  autoplay: true,
+  transitonDuration: 500,
+  arrows: true,
+  infinite: true,
+  indicators: true,
+};
 
 const ImageBanner = () => {
-  const { loading, error, response: images } = PullData("/best");
-  if (loading) return <div>loading</div>;
-  if (error) return <div>{error}</div>;
+  const [images, setImages] = useState([]);
 
-  const properties = {
-    duration: 2000,
-    autoplay: true,
-    transitonDuration: 500,
-    arrows: true,
-    infinite: true,
-    indicators: true,
+  const pullData = async () => {
+    const data = await apiRequest(HTTP_METHODS.GET, "/best");
+    setImages(data);
   };
+
+  useEffect(() => {
+    pullData();
+  }, []);
+
+  const renderGallery = () => {
+    if (images.length == 0) return "No ładowanie";
+
+    return images.map((slideImage, index) => (
+      <div className="each-slide" key={index}>
+        <div style={{ backgroundImage: `url(${slideImage.url})` }} />
+      </div>
+    ));
+  };
+
   return (
     <div className="imageBanner-container">
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
       <Slide className="image-slider" {...properties} cssClass="image-slider">
-        {images.map((slideImage, index) => (
-          <div className="each-slide" key={index}>
-            <div style={{ backgroundImage: `url(${slideImage.url})` }} />
-          </div>
-        ))}
+        {images ? renderGallery() : "No błont kolego"}
       </Slide>
     </div>
   );

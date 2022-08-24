@@ -9,7 +9,7 @@ const MainPage = () => {
     <div>
       <PostProvider>
         <ImageBanner />
-        <Content />
+        {/* <Content /> */}
       </PostProvider>
     </div>
   );
