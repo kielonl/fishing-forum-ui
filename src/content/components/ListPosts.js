@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
-
+import React, { useContext, useEffect } from "react";
+import { apiRequest } from "../../api/api";
+import { PostContextUpdate } from "../../contexts/postContext";
 import { PostContext } from "../../contexts/postContext";
 
 const ListPosts = () => {
   const post = useContext(PostContext);
+  const setPost = useContext(PostContextUpdate);
+
+  const { loading, error, response: loadedPosts } = apiRequest("get", "/post");
+  useEffect(() => {
+    setPost(loadedPosts);
+  }, [loadedPosts]);
+
+  if (loading) return <div>loading</div>;
+  if (error) return <div>error</div>;
   const listPosts = post?.result?.map(({ title, content, image, post_id }) => {
-    // post.reactions.map((reaction, index) => {
-    //   console.log(reaction);
-    // });
     return (
       <div key={post_id} className="content-post">
         <h1 className="content-post-title">{title}</h1>
