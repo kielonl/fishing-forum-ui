@@ -4,15 +4,6 @@ import { apiRequest } from "../../api/api";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import "../styles/imageBanner.scss";
 
-const properties = {
-  duration: 2000,
-  autoplay: true,
-  transitonDuration: 500,
-  arrows: true,
-  infinite: true,
-  indicators: true,
-};
-
 const ImageBanner = () => {
   const [images, setImages] = useState([]);
 
@@ -26,7 +17,7 @@ const ImageBanner = () => {
   }, []);
 
   const renderGallery = () => {
-    if (images.length == 0) return "No ładowanie";
+    if (images.length === 0) return "No ładowanie";
 
     return images.map((slideImage, index) => (
       <div className="each-slide" key={index}>
