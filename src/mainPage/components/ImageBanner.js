@@ -40,13 +40,9 @@ const ImageBanner = () => {
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
-      <Carousel
-        className="image-slider"
-        {...properties}
-        cssClass="image-slider"
-      >
-        {images ? renderGallery() : "No błont kolego"}
-      </Carousel>
+      <div>
+        <Carousel>{images ? renderGallery() : "No błont kolego"}</Carousel>
+      </div>
     </div>
   );
 };
