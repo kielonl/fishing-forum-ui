@@ -1,46 +1,52 @@
-import React from "react";
-import { Slide } from "react-slideshow-image";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+// import { Slide } from "react-slideshow-image";
+import Carousel from "framer-motion-carousel";
+import { apiRequest } from "../../api/api";
+import { HTTP_METHODS } from "../../constants/httpMethods";
 import "../styles/imageBanner.scss";
-const url = process.env.REACT_APP_LOGIN_ENDPOINT + "/best";
+
+const properties = {
+  duration: 2000,
+  autoplay: true,
+  transitonDuration: 500,
+  arrows: true,
+  infinite: true,
+  indicators: true,
+};
 
 const ImageBanner = () => {
   const [images, setImages] = useState([]);
-  const pullSlideImages = async () => {
-    axios
-      .get(url)
-      .then((response) => {
-        const data = response.data.images;
-        setImages(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const pullData = async () => {
+    const data = await apiRequest(HTTP_METHODS.GET, "/best");
+    setImages(data);
   };
+
   useEffect(() => {
-    pullSlideImages();
+    pullData();
   }, []);
-  const properties = {
-    duration: 2000,
-    autoplay: true,
-    transitonDuration: 500,
-    arrows: true,
-    infinite: true,
-    indicators: true,
+
+  const renderGallery = () => {
+    if (images.length === 0) return "No ładowanie";
+
+    return images.map((slideImage, index) => (
+      <div className="each-slide" key={index}>
+        <div style={{ backgroundImage: `url(${slideImage.url})` }} />
+      </div>
+    ));
   };
+
   return (
     <div className="imageBanner-container">
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
-      <Slide className="image-slider" {...properties} cssClass="image-slider">
-        {images.map((slideImage, index) => (
-          <div className="each-slide" key={index}>
-            <div style={{ backgroundImage: `url(${slideImage.url})` }} />
-          </div>
-        ))}
-      </Slide>
+      <Carousel
+        className="image-slider"
+        {...properties}
+        cssClass="image-slider"
+      >
+        {images ? renderGallery() : "No błont kolego"}
+      </Carousel>
     </div>
   );
 };
