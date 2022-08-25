@@ -17,7 +17,6 @@ const Modal = ({ handleClose }) => {
       username: username,
       password: password,
     });
-    console.log(sendCredentials);
     if (sendCredentials?.response?.data?.message) {
       setErrorMessage({
         value: sendCredentials?.response?.data?.message,
@@ -31,13 +30,6 @@ const Modal = ({ handleClose }) => {
       value: "",
       ifError: false,
     });
-
-    // } catch (error) {
-    //   setErrorMessage({
-    //     value: error.response.data.message,
-    //     ifError: true,
-    //   });
-    // }
   };
   const dropIn = {
     hidden: {

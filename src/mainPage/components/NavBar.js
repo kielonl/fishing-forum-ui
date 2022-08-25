@@ -11,7 +11,7 @@ const NavBar = () => {
   const user = useContext(UserContext);
 
   const HandleDisplay = () => {
-    if (user === undefined) return console.log("123");
+    if (user === undefined) return;
 
     if (Object.keys(user)?.length === 0) {
       return <LogInButton />;
