@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 
 import "./styles/Content.scss";
-import LoadPost from "./components/LoadPosts";
 import AddPost from "./components/AddPost";
 import { UserContext } from "../contexts/userContext";
+import ListPosts from "./components/ListPosts";
 
 const Content = () => {
   const [addingMode, setAddingMode] = useState(false);
@@ -28,7 +28,7 @@ const Content = () => {
   return (
     <div className="content-container">
       <div className="content-main-block">
-        <LoadPost />
+        <ListPosts />
       </div>
 
       <div>{displayButton()}</div>

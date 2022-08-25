@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import Backdrop from "./Backdrop";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 import { UserContextUpdate } from "../../contexts/userContext";
-import { makeRequest } from "../../api/api";
-
+import { apiRequest } from "../../api/api";
+import { HTTP_METHODS } from "../../constants/httpMethods";
 const Modal = ({ handleClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,11 +14,11 @@ const Modal = ({ handleClose }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await makeRequest("post", "/auth/login", {
+      const response = await apiRequest(HTTP_METHODS.POST, "/auth/login", {
         username: username,
         password: password,
       });
-      setUser(response.data.result[0]);
+      setUser(response[0]);
       handleClose();
       setErrorMessage({
         value: "",
@@ -26,7 +26,7 @@ const Modal = ({ handleClose }) => {
       });
     } catch (error) {
       setErrorMessage({
-        value: error.respose.data.message,
+        value: error.response.data.message,
         ifError: true,
       });
     }
