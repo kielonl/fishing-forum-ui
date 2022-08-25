@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "framer-motion-carousel";
+import { apiRequest } from "../../api/api";
+import { HTTP_METHODS } from "../../constants/httpMethods";
 import "../styles/imageBanner.scss";
-import { useApiCall } from "../../api/useApiCall";
 
 const ImageBanner = () => {
-  const { loading, error, response: images } = useApiCall("get", "/best");
-  if (loading) return <div>loading</div>;
-  if (error) return <div>{error}</div>;
+  const [images, setImages] = useState([]);
+
+  const pullData = async () => {
+    const data = await apiRequest(HTTP_METHODS.GET, "/best");
+    setImages(data);
+  };
+
+  useEffect(() => {
+    pullData();
+  }, []);
+
+  const renderGallery = () => {
+    if (images.length === 0) return "loading";
+
+    return images.map((slideImage, index) => (
+      <div className="each-slide" key={index}>
+        <div style={{ backgroundImage: `url(${slideImage.url})` }} />
+      </div>
+    ));
+  };
 
   return (
     <div className="imageBanner-container">
       <div className="imageBanner-text-banner">
         <div>WEDKARZE TYGODNIA</div>
       </div>
-      <Carousel className="image-slider">
-        {images.map((slideImage, index) => (
-          <div className="each-slide" key={index}>
-            <div style={{ backgroundImage: `url(${slideImage.url})` }} />
-          </div>
-        ))}
-      </Carousel>
+      <Carousel>{images ? renderGallery() : "error"}</Carousel>
     </div>
   );
 };

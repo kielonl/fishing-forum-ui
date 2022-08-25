@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
+
 import { UserContext } from "../../contexts/userContext";
 import { PostContextUpdate } from "../../contexts/postContext";
-
-import { makeRequest } from "../../api/api";
+import { HTTP_METHODS } from "../../constants/httpMethods";
+import { apiRequest } from "../../api/api";
 import ErrorBox from "../../mainPage/components/ErrorBox";
 
 const AddPost = ({ setMode }) => {
@@ -17,23 +18,26 @@ const AddPost = ({ setMode }) => {
   });
 
   const HandleSubmit = async () => {
-    try {
-      await makeRequest("post", "/post/create", {
-        title: title,
-        content: content,
-        author: user.user_id,
-        image: image,
-      });
-      const getResponse = await makeRequest("get", "/post");
-      setPost(getResponse.data);
-      setMode(false);
-    } catch (error) {
+    const sendPost = await apiRequest(HTTP_METHODS.POST, "/post/create", {
+      title: title,
+      content: content,
+      author: user.user_id,
+      image: image,
+    });
+    const errorResponse = sendPost?.response?.data.message;
+    setMode(false);
+    if (errorResponse) {
       setMode(true);
       setErrorMessage({
-        value: error.response.data.message,
+        value: errorResponse,
         ifError: true,
       });
     }
+    const getResponse = await apiRequest(
+      HTTP_METHODS.GET,
+      "/post/6ab0ce9d-28b2-483d-a1ec-cf1ec38db784"
+    );
+    setPost(getResponse);
   };
   const sendFile = (e) => {
     const [file] = e.target.files;
