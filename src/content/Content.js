@@ -10,6 +10,7 @@ const Content = () => {
   const user = useContext(UserContext);
 
   const displayButton = () => {
+    if (user === undefined) return;
     if (Object.keys(user).length === 0) {
       return <div></div>;
     }

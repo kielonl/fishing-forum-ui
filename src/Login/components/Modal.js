@@ -13,23 +13,31 @@ const Modal = ({ handleClose }) => {
   const setUser = useContext(UserContextUpdate);
 
   const handleSubmit = async () => {
-    try {
-      const response = await apiRequest(HTTP_METHODS.POST, "/auth/login", {
-        username: username,
-        password: password,
-      });
-      setUser(response[0]);
-      handleClose();
+    const sendCredentials = await apiRequest(HTTP_METHODS.POST, "/auth/login", {
+      username: username,
+      password: password,
+    });
+    console.log(sendCredentials);
+    if (sendCredentials?.response?.data?.message) {
       setErrorMessage({
-        value: "",
-        ifError: false,
-      });
-    } catch (error) {
-      setErrorMessage({
-        value: error.response.data.message,
+        value: sendCredentials?.response?.data?.message,
         ifError: true,
       });
+      return;
     }
+    setUser(sendCredentials[0]);
+    handleClose();
+    setErrorMessage({
+      value: "",
+      ifError: false,
+    });
+
+    // } catch (error) {
+    //   setErrorMessage({
+    //     value: error.response.data.message,
+    //     ifError: true,
+    //   });
+    // }
   };
   const dropIn = {
     hidden: {
