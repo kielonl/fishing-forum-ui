@@ -17,7 +17,7 @@ const ImageBanner = () => {
   }, []);
 
   const renderGallery = () => {
-    if (images.length === 0) return "loading";
+    if (!images) return "loading";
 
     return images.map((slideImage, index) => (
       <div className="each-slide" key={index}>

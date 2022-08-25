@@ -24,11 +24,12 @@ const AddPost = ({ setMode }) => {
       author: user.user_id,
       image: image,
     });
+    const errorResponse = sendPost?.response?.data.message;
     setMode(false);
-    if (sendPost?.response?.data?.message) {
+    if (errorResponse) {
       setMode(true);
       setErrorMessage({
-        value: sendPost?.response?.data?.message,
+        value: errorResponse,
         ifError: true,
       });
     }

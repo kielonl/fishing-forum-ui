@@ -17,9 +17,10 @@ const Modal = ({ handleClose }) => {
       username: username,
       password: password,
     });
-    if (sendCredentials?.response?.data?.message) {
+    const errorResponse = sendCredentials?.response?.data.message;
+    if (errorResponse) {
       setErrorMessage({
-        value: sendCredentials?.response?.data?.message,
+        value: errorResponse,
         ifError: true,
       });
       return;

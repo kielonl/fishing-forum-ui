@@ -9,10 +9,13 @@ const Content = () => {
   const [addingMode, setAddingMode] = useState(false);
   const user = useContext(UserContext);
 
+  const handleClick = () => {
+    setAddingMode(true);
+  };
+
   const displayButton = () => {
-    if (user === undefined) return;
-    if (Object.keys(user).length === 0) {
-      return <div></div>;
+    if (user && Object.keys(user).length === 0) {
+      return;
     }
     if (addingMode) {
       return <AddPost setMode={setAddingMode} />;
@@ -23,9 +26,7 @@ const Content = () => {
       </button>
     );
   };
-  const handleClick = () => {
-    setAddingMode(true);
-  };
+
   return (
     <div className="content-container">
       <div className="content-main-block">

@@ -10,10 +10,8 @@ import "../styles/navBar.scss";
 const NavBar = () => {
   const user = useContext(UserContext);
 
-  const HandleDisplay = () => {
-    if (user === undefined) return;
-
-    if (Object.keys(user)?.length === 0) {
+  const handleDisplay = () => {
+    if (user && Object.keys(user)?.length === 0) {
       return <LogInButton />;
     }
     return <DisplayUsername />;
@@ -23,11 +21,7 @@ const NavBar = () => {
   return (
     <ul className="navbar-main">
       <NavBarItems items={Items} />
-      <li className="navbar-login not-bold">
-        {/* {Object.keys(user).length === 0 ? <LogInButton /> : <DisplayUsername />}
-         */}
-        {HandleDisplay()}
-      </li>
+      <li className="navbar-login not-bold">{handleDisplay()}</li>
     </ul>
   );
 };

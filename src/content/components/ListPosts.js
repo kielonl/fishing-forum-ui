@@ -18,7 +18,7 @@ const ListPosts = () => {
   }, []);
 
   const listPosts = post?.result?.map(({ title, content, image, post_id }) => {
-    if (post.length === 0) return <div>loading</div>;
+    if (!post) return <div>loading</div>;
     return (
       <div key={post_id} className="content-post">
         <h1 className="content-post-title">{title}</h1>
