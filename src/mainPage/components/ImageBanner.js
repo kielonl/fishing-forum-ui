@@ -11,17 +11,14 @@ const ImageBanner = () => {
     const data = await apiRequest(HTTP_METHODS.GET, "/best");
     setImages(data);
   };
-
   useEffect(() => {
     pullData();
   }, []);
-
   const renderGallery = () => {
     if (images.length === 0) return "loading";
-
-    return images.map((slideImage, index) => (
+    return images?.map((slideImage, index) => (
       <div className="each-slide" key={index}>
-        <div style={{ backgroundImage: `url(${slideImage.url})` }} />
+        <img src={slideImage?.image} />
       </div>
     ));
   };
