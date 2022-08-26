@@ -8,7 +8,7 @@ const DisplayUsername = () => {
   return (
     <div className="navbar-username-wrapper">
       <div className="navbar-username" onClick={() => navigate("/profile")}>
-        {user.username}
+        {user?.username}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ export const UserContext = React.createContext();
 export const UserContextUpdate = React.createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
     setUser(storageManager.read("user"));
