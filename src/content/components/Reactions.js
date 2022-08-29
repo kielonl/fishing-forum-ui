@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { PostContextUpdate } from "../../contexts/postContext";
+import { apiRequest } from "../../api/api";
 
 import beerFilledLike from "../../assets/beer-filled-like.png";
 import beerNotFilledLike from "../../assets/beer-not-filled-like.png";
 import beerFilledDislike from "../../assets/beer-filled-dislike.png";
 import beerNotFilledDislike from "../../assets/beer-not-filled-dislike.png";
-import { apiRequest } from "../../api/api";
 
 export const Reactions = ({ likes, reactedValue, post_id }) => {
   const setPost = useContext(PostContextUpdate);

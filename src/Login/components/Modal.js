@@ -1,37 +1,14 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import Backdrop from "./Backdrop";
-import ErrorBox from "../../mainPage/components/ErrorBox";
-import { UserContextUpdate } from "../../contexts/userContext";
-import { apiRequest } from "../../api/api";
-import { HTTP_METHODS } from "../../constants/httpMethods";
-const Modal = ({ handleClose }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState({});
-  const setUser = useContext(UserContextUpdate);
+import { Login } from "./Login";
+import { Register } from "./Registration";
+import { AlertBox } from "../../mainPage/components/AlertBox";
+import { alertColors } from "../../constants/alertColors";
 
-  const handleSubmit = async () => {
-    const sendCredentials = await apiRequest(HTTP_METHODS.POST, "/auth/login", {
-      username: username,
-      password: password,
-    });
-    const errorResponse = sendCredentials?.response?.data.message;
-    if (errorResponse) {
-      setErrorMessage({
-        value: errorResponse,
-        ifError: true,
-      });
-      return;
-    }
-    setUser(sendCredentials[0]);
-    handleClose();
-    setErrorMessage({
-      value: "",
-      ifError: false,
-    });
-  };
+const Modal = ({ handleClose }) => {
+  const [register, setRegister] = useState(false);
   const dropIn = {
     hidden: {
       y: "-100vh",
@@ -60,23 +37,23 @@ const Modal = ({ handleClose }) => {
         initial="hidden"
         animate="visible"
       >
-        <div className="login-form">
-          <h1>Log in</h1>
-          <input
-            type="text"
-            className="login-input"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="text"
-            className="login-input"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="login-button" onClick={handleSubmit}>
-            Log in
-          </button>
-          <ErrorBox error={errorMessage} />
-        </div>
+        {!register ? (
+          <Login handleClose={handleClose} />
+        ) : (
+          <Register handleClose={handleClose} setRegister={setRegister} />
+        )}
+        <button
+          onClick={() => setRegister(!register)}
+          style={{
+            color: "white",
+            marginTop: "10px ",
+            cursor: "pointer",
+            background: "none",
+            border: "none",
+          }}
+        >
+          {!register ? "Register" : "Login"}
+        </button>
       </motion.div>
     </Backdrop>
   );

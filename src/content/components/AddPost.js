@@ -3,19 +3,21 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { PostContextUpdate } from "../../contexts/postContext";
 import { HTTP_METHODS } from "../../constants/httpMethods";
+import { alertColors } from "../../constants/alertColors";
 import { apiRequest } from "../../api/api";
-import ErrorBox from "../../mainPage/components/ErrorBox";
+import { AlertBox } from "../../mainPage/components/AlertBox";
 
 const AddPost = ({ setMode }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+  const [alertMessage, setAlertMessage] = useState({
+    value: "",
+    ifAlert: false,
+    color: null,
+  });
   const user = useContext(UserContext);
   const setPost = useContext(PostContextUpdate);
-  const [image, setImage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState({
-    value: "",
-    ifError: false,
-  });
 
   const HandleSubmit = async () => {
     const sendPost = await apiRequest(HTTP_METHODS.POST, "/post/create", {
@@ -28,9 +30,10 @@ const AddPost = ({ setMode }) => {
     setMode(false);
     if (errorResponse) {
       setMode(true);
-      setErrorMessage({
+      setAlertMessage({
         value: errorResponse,
         ifError: true,
+        color: alertColors.red,
       });
     }
     const getResponse = await apiRequest(
@@ -60,7 +63,7 @@ const AddPost = ({ setMode }) => {
         onChange={(e) => setContent(e.target.value)}
       />
       <input type="file" onChange={sendFile} accept="image/*" />
-      <ErrorBox error={errorMessage} />
+      <AlertBox alertInfo={alertMessage} />
       <button onClick={HandleSubmit} className="content-addPost-button">
         Add Post
       </button>
