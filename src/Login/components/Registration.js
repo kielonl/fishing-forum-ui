@@ -28,7 +28,7 @@ export const Register = () => {
       return;
     }
     setAlertMessage({
-      value: "registered successfuly",
+      value: "registered successfully",
       ifAlert: true,
       color: alertColors.green,
     });
