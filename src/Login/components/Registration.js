@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-// import ErrorBox from "../../mainPage/components/ErrorBox";
 import { AlertBox } from "../../mainPage/components/AlertBox";
 import { apiRequest } from "../../api/api";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import { alertColors } from "../../constants/alertColors";
-// import SucessBox from "../../mainPage/components/SuccessBox";
 
 export const Register = () => {
   const [username, setUsername] = useState("");
