@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import Backdrop from "./Backdrop";
 import { Login } from "./Login";
 import { Register } from "./Registration";
-import { AlertBox } from "../../mainPage/components/AlertBox";
-import { alertColors } from "../../constants/alertColors";
 
 const Modal = ({ handleClose }) => {
   const [register, setRegister] = useState(false);

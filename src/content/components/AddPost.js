@@ -32,7 +32,7 @@ const AddPost = ({ setMode }) => {
       setMode(true);
       setAlertMessage({
         value: errorResponse,
-        ifError: true,
+        ifAlert: true,
         color: alertColors.red,
       });
     }
