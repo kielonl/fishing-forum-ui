@@ -36,7 +36,7 @@ export const Register = () => {
   return (
     <div className="login-form">
       <h1>Register</h1>
-      <input
+      {/* <input
         type="text"
         placeholder="username..."
         className="login-input"
@@ -47,8 +47,38 @@ export const Register = () => {
         placeholder="password..."
         className="login-input"
         onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className="login-button" onClick={handleSubmit}>
+      /> */}
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Your username</span>
+        </label>
+        <label class="input-group input-group-vertical">
+          <span>Username</span>
+          <input
+            type="text"
+            placeholder="Łowca dorszy"
+            class="input input-bordered"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Your password</span>
+        </label>
+        <label class="input-group input-group-vertical">
+          <span>Password</span>
+          <input
+            type="text"
+            placeholder="1234"
+            class="input input-bordered"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <button className="btn login-button" onClick={handleSubmit}>
         Register
       </button>
 

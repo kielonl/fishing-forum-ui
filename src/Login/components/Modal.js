@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import Backdrop from "./Backdrop";
 import { Login } from "./Login";
 import { Register } from "./Registration";
-import { AlertBox } from "../../mainPage/components/AlertBox";
-import { alertColors } from "../../constants/alertColors";
 
 const Modal = ({ handleClose }) => {
   const [register, setRegister] = useState(false);
@@ -32,7 +30,8 @@ const Modal = ({ handleClose }) => {
     <Backdrop onClick={handleClose}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="modal orange-gradient"
+        // className="modal orange-gradient"
+        className="modal-box"
         variants={dropIn}
         initial="hidden"
         animate="visible"

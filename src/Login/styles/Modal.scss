@@ -11,7 +11,7 @@
     z-index:10
 }
 
-.modal {
+.login-modal {
     background-color: #312e81;
     width: clamp(30%, 500px, 70%);
     height: min(70%, 700px);
@@ -30,30 +30,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color:white;
 }
 
 .login-button {
     margin-top: 25px;
-    width: 30%;
-    background-color: #00fff77a;
-    color: #080710;
-    padding: 15px 0;
-    font-size: 1em;
-    font-weight: 600;
-    border-radius: 5px;
     cursor: pointer;
-    border: none;
 }
 
 .login-input {
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: #312e81;
     color: white;
-    border-radius: 3px;
     margin-top: 8px;
+    margin-bottom:8px;
     font-size: 20px;
-    font-weight: 300;
     outline: none;
 }
