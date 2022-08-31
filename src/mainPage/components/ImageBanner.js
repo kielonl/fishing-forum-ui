@@ -18,7 +18,7 @@ const ImageBanner = () => {
     if (images.length === 0) return "loading";
     return images?.map((slideImage, index) => (
       <div className="each-slide" key={index}>
-        <img src={slideImage?.image} />
+        <img src={slideImage?.image} alt="slide" />
       </div>
     ));
   };

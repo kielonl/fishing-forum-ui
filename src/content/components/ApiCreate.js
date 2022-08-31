@@ -1,14 +1,13 @@
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 
 import { UserContext } from "../../contexts/userContext";
-import { apiRequest } from "../../api/api";
+import { PostContextUpdate } from "../../contexts/postContext";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import { alertColors } from "../../constants/alertColors";
-import { PostContextUpdate } from "../../contexts/postContext";
+import { apiRequest } from "../../api/api";
 import { AlertBox } from "../../mainPage/components/AlertBox";
 
-export const Reply = ({ post_id, setMode }) => {
-  const [content, setContent] = useState("");
+export const ApiCreate = ({ children, data, setMode, endpoint }) => {
   const [alertMessage, setAlertMessage] = useState({
     value: "",
     ifAlert: false,
@@ -16,24 +15,22 @@ export const Reply = ({ post_id, setMode }) => {
   });
   const user = useContext(UserContext);
   const setPost = useContext(PostContextUpdate);
-  const handleSubmit = async () => {
-    const sendReply = await apiRequest(HTTP_METHODS.POST, "/post/comment", {
-      parent_id: post_id,
-      user_id: user?.user_id,
-      content: content,
-    });
 
-    const errorResponse = sendReply?.response?.data.message;
+  const HandleSubmit = async () => {
+    const sendPost = await apiRequest(HTTP_METHODS.POST, endpoint, data);
+
+    const errorResponse = sendPost?.response?.data.message;
+
     setMode(false);
 
-    if (true) {
+    if (errorResponse) {
+      setMode(true);
       setAlertMessage({
         value: errorResponse,
         ifAlert: true,
         color: alertColors.red,
       });
     }
-
     const getResponse = await apiRequest(
       HTTP_METHODS.GET,
       `/post/${user?.user_id}`
@@ -42,14 +39,10 @@ export const Reply = ({ post_id, setMode }) => {
   };
 
   return (
-    <div className="">
-      <textarea
-        placeholder="Reply..."
-        className="reply-text-area"
-        onChange={(e) => setContent(e.target.value)}
-      />
+    <div className="content-addPost">
+      {children}
       <AlertBox alertInfo={alertMessage} />
-      <button className="content-addPost-button" onClick={handleSubmit}>
+      <button onClick={HandleSubmit} className="content-addPost-button">
         Add Post
       </button>
     </div>

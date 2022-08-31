@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Reactions } from "./Reactions";
 
@@ -6,11 +6,9 @@ import { PostContext, PostContextUpdate } from "../../contexts/postContext";
 import { apiRequest } from "../../api/api";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import { UserContext } from "../../contexts/userContext";
-import { ListComments } from "./ListComments";
-import { Reply } from "./Reply";
+import { Post } from "./Post";
 
 const ListPosts = () => {
-  const [addingMode, setAddingMode] = useState(false);
   const post = useContext(PostContext);
   const setPost = useContext(PostContextUpdate);
   const user = useContext(UserContext);
@@ -23,26 +21,11 @@ const ListPosts = () => {
     pullData();
   }, [user]);
 
-  const handleClick = () => {
-    setAddingMode(true);
-  };
-
-  const renderDisplayButton = (post_id) => {
-    if (addingMode) {
-      return <Reply setMode={setAddingMode} post_id={post_id} />;
-    }
-    return (
-      <button onClick={handleClick} className="content-addPost-button">
-        Reply
-      </button>
-    );
-  };
-
   const listPosts = post?.result?.map(
-    ({ title, content, image, post_id, likes, reactedValue, comments }, i) => {
-      if (post.length === 0) return <div>loading</div>;
+    ({ title, content, image, post_id, likes, reactedValue, comments }) => {
+      if (post.length === 0) return <div key={post_id}>loading</div>;
       return (
-        <div key={i} className="content-post">
+        <div key={post_id} className="content-post">
           <div className="content-post-leftSide">
             <Reactions
               post_id={post_id}
@@ -50,15 +33,13 @@ const ListPosts = () => {
               reactedValue={reactedValue}
             />
           </div>
-          <div className="content-post-rightSide">
-            <h1 className="content-post-title">{title}</h1>
-            <div className="content-post-description">{content}</div>
-            <img src={image} alt="" className="message-image" />
-            <h1 className="post-comments">
-              {comments.length > 0 && <ListComments comments={comments} />}
-            </h1>
-            {renderDisplayButton(post_id)}
-          </div>
+          <Post
+            post_id={post_id}
+            title={title}
+            content={content}
+            comments={comments}
+            image={image}
+          />
         </div>
       );
     }
