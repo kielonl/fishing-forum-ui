@@ -6,7 +6,7 @@ import { PostContext, PostContextUpdate } from "../../contexts/postContext";
 import { apiRequest } from "../../api/api";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import { UserContext } from "../../contexts/userContext";
-import { listComments } from "./listComments";
+import { ListComments } from "./ListComments";
 import { Reply } from "./Reply";
 
 const ListPosts = () => {
@@ -27,7 +27,7 @@ const ListPosts = () => {
     setAddingMode(true);
   };
 
-  const displayButton = (post_id) => {
+  const renderDisplayButton = (post_id) => {
     if (addingMode) {
       return <Reply setMode={setAddingMode} post_id={post_id} />;
     }
@@ -55,12 +55,9 @@ const ListPosts = () => {
             <div className="content-post-description">{content}</div>
             <img src={image} alt="" className="message-image" />
             <h1 className="post-comments">
-              {comments.length > 0 && listComments({ comments })}
+              {comments.length > 0 && <ListComments comments={comments} />}
             </h1>
-            {/* <button>reply</button> */}
-            {/* <Reply />;
-             */}
-            {displayButton(post_id)}
+            {renderDisplayButton(post_id)}
           </div>
         </div>
       );
