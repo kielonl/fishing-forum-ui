@@ -38,7 +38,7 @@ const AddPost = ({ setMode }) => {
     }
     const getResponse = await apiRequest(
       HTTP_METHODS.GET,
-      "/post/6ab0ce9d-28b2-483d-a1ec-cf1ec38db784"
+      `/post/${user?.user_id}`
     );
     setPost(getResponse);
   };

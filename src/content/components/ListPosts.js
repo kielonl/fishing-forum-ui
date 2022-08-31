@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Reactions } from "./Reactions";
 
@@ -7,8 +7,10 @@ import { apiRequest } from "../../api/api";
 import { HTTP_METHODS } from "../../constants/httpMethods";
 import { UserContext } from "../../contexts/userContext";
 import { listComments } from "./listComments";
+import { Reply } from "./Reply";
 
 const ListPosts = () => {
+  const [addingMode, setAddingMode] = useState(false);
   const post = useContext(PostContext);
   const setPost = useContext(PostContextUpdate);
   const user = useContext(UserContext);
@@ -20,6 +22,22 @@ const ListPosts = () => {
   useEffect(() => {
     pullData();
   }, [user]);
+
+  const handleClick = () => {
+    setAddingMode(true);
+  };
+
+  const displayButton = (post_id) => {
+    if (addingMode) {
+      return <Reply setMode={setAddingMode} post_id={post_id} />;
+    }
+    return (
+      <button onClick={handleClick} className="content-addPost-button">
+        Reply
+      </button>
+    );
+  };
+
   const listPosts = post?.result?.map(
     ({ title, content, image, post_id, likes, reactedValue, comments }, i) => {
       if (post.length === 0) return <div>loading</div>;
@@ -37,8 +55,12 @@ const ListPosts = () => {
             <div className="content-post-description">{content}</div>
             <img src={image} alt="" className="message-image" />
             <h1 className="post-comments">
-              {comments.length > 0 ? listComments({ comments }) : <div></div>}
+              {comments.length > 0 && listComments({ comments })}
             </h1>
+            {/* <button>reply</button> */}
+            {/* <Reply />;
+             */}
+            {displayButton(post_id)}
           </div>
         </div>
       );
